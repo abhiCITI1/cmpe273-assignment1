@@ -17,13 +17,14 @@ def get_Config(filename):
     if(filename == 'dev-config.yml' or filename == 'test-config.yml' or
        filename == 'dev-config.json' or filename == 'test-config.json'):
         username = 'abhishek.up25@gmail.com'
-        token = '2e73e2fc094ac6808d9bfbff25d0c2b03239c68a'
+        myToken = 'token:e79f62af638d894a41bcf0975ba2d7cce92765df'
         
+        actualToken = myToken.split(':')
+        actualToken1 = str(actualToken[1])
         
         myRepo = str(sys.argv[1])
-        #print "My Repo is :" + myRepo
         
-        github = Github(username, token)
+        github = Github(username, actualToken1)
         user = github.get_user()
         
         repositories = user.get_repos()
