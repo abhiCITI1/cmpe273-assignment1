@@ -16,17 +16,9 @@ def get_Config(filename):
     ##print "Inside method" + filename
     if(filename == 'dev-config.yml' or filename == 'test-config.yml' or
        filename == 'dev-config.json' or filename == 'test-config.json'):
-        username = 'abhishek.up25@gmail.com'
-        myToken = 'token:e79f62af638d894a41bcf0975ba2d7cce92765df'
-        
-        actualToken = myToken.split(':')
-        actualToken1 = str(actualToken[1])
-        
         myRepo = str(sys.argv[1])
-        
-        github = Github(username, actualToken1)
-        user = github.get_user()
-        
+        github = Github()
+        user = github.get_user("abhiCITI1")
         repositories = user.get_repos()
         
         for repo in repositories:
@@ -39,8 +31,6 @@ def get_Config(filename):
                     return str(file_data)
                 except:
                     return "File is invalid..Not found in your Github repository."
-
-
     else:
         return "File is invalid..Not found in your Github repository."
 
