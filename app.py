@@ -12,17 +12,18 @@ def hello():
 
 @app.route('/v1/<filename>')
 def get_Config(filename):
-
-    if(filename == 'dev-config.yml' or filename == 'test-config.yml' or
-        filename == 'dev-config.json' or filename == 'test-config.json'):
+    
+    fileType = filename.split('.')
+    fileType1 = fileType[1]
+    if(fileType1 == 'yml' or fileType1 == 'json'):
         myRepo = str(sys.argv[1])
         github = Github()
         user = github.get_user("abhiCITI1")
         repositories = user.get_repos()
-
+        
         for repo in repositories:
             repostoryName = "https://github.com/" + str(repo.full_name)
-
+            
             if(repostoryName == myRepo):
                 try:
                     file_content = repo.get_contents(filename ,ref = 'master')
